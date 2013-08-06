@@ -627,7 +627,7 @@ unsigned long ObjectRecording::ImageAndRangeSegmentation(cv::Mat& color_image, p
 
 			// crop point cloud to bounding box
 			bool maskDepthValues = true;
-			pcl::PointXYZRGB& point = pointcloud.at(i, j);
+			pcl::PointXYZRGB& point = pointcloud(i, j);
 
 			if (point.x == point.x && point.y == point.y && point.z == point.z)		// test for NaN
 			{
