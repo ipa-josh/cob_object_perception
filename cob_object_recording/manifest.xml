@@ -22,6 +22,7 @@
   <depend package="image_transport"/>
   <depend package="visualization_msgs"/>
   <depend package="cob_object_detection_msgs"/>
+  <depend package="cob_fiducials"/>
 
   <rosdep name="boost"/>
   <rosdep name="sfml-dev"/>
