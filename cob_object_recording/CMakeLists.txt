@@ -37,6 +37,7 @@ rosbuild_add_executable(object_recording ros/src/object_recording.cpp)
 target_link_libraries(object_recording sfml-audio)
 
 rosbuild_add_executable(object_recording_client ros/src/object_recording_client.cpp)
+rosbuild_add_executable(transform ros/src/transform.cpp)
 
 
 
