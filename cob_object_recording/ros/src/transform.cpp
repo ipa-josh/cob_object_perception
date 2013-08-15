@@ -6,12 +6,14 @@
 
 #include <pcl/registration/transforms.h>	//PCL 1.1
 
+#include <pcl/filters/voxel_grid.h>
+
 /**
  * This tutorial demonstrates simple sending of messages over the ROS system.
  */
 int main(int argc, char **argv)
 {
-	printf("help: transform ouput_file inputfile1 inputfile2 ...\n");
+	if(argc<3) printf("help: transform ouput_file inputfile1 inputfile2 ...\n");
    
 	pcl::PointCloud<pcl::PointXYZRGB> cloud;
 	for(int i=2; i<argc; i++) {
@@ -32,7 +34,19 @@ int main(int argc, char **argv)
 		pcl::transformPointCloud (pc2, pc2, T);
 		cloud += pc2;
 	}
+
 	pcl::io::savePCDFile(argv[1], cloud);
+
+	pcl::PointCloud<pcl::PointXYZRGB> cloud_voxel;
+	pcl::VoxelGrid<pcl::PointXYZRGB> sor;
+	sor.setInputCloud (cloud.makeShared());
+	sor.setLeafSize (0.005f, 0.005f, 0.005f);
+	sor.filter ( cloud_voxel);
+	pcl::io::savePCDFile(std::string(argv[1])+"_voxel.pcd", cloud);
+
+	Eigen::Vector4f centroid;
+	pcl::compute3DCentroid (cloud_voxel, centroid);
+	std::cout<<"centroid: "<<centroid.transpose()<<std::endl;
 
 	return 0;
 }
