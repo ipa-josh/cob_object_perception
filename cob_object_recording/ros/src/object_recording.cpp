@@ -316,6 +316,10 @@ void ObjectRecording::inputCallback(const cob_object_detection_msgs::DetectionAr
 			sound_feedback_sound_hit_.Play();
 			playing_hit_sound = true;
 		}
+		else if (closest_translation_distance > distance_threshold_translation_)
+			ROS_WARN("ObjectRecording::inputCallback: Out of translational limits. Discarding. %.3f (threshold = %.3f)", closest_translation_distance, distance_threshold_translation_);
+		else if (closest_orientation_distance > distance_threshold_orientation_)
+			ROS_WARN("ObjectRecording::inputCallback: Out of rotational limits. Discarding. %.3f (threshold = %.3f)", closest_orientation_distance, distance_threshold_orientation_);
 	}
 
 //	// play proximity sound w.r.t. to target pose distance
