@@ -235,7 +235,7 @@ public:
 
         // Publisher for visualization/debugging
         fiducials_marker_array_publisher_ = node_handle_.advertise<visualization_msgs::MarkerArray>( "fiducial_marker_array", 0 );
-        img2D_pub_= image_transport_1_->advertise("image", 1);
+        img2D_pub_= image_transport_1_->advertise("image", 1, true /*LATCHED*/);
 
         synchronizer_received_ = false;
         prev_marker_array_size_ = 0;
