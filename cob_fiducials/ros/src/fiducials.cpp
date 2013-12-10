@@ -460,7 +460,7 @@ public:
 			}
 			
             
-            result = !(res.object_list.detections.empty()); //detectFiducials(res.object_list, color_mat_8U3_);
+            result = true; //!(res.object_list.detections.empty()); //detectFiducials(res.object_list, color_mat_8U3_);
         }
         disconnectCallback();
 
